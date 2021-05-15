@@ -25,15 +25,19 @@ decode(v) = {
 
 k=ordre(M);
 
+\\On calcule d'abord l'ordre de la matrice M
+
 p = eulerphi(k);
 
 \\print(p);
 
-inverse = bezout(65537, k)[1];
+inverse = bezout(65537, k)[1]; \\ on calcule une relation de Bezout
+
+\\Avec q=65537,  M = A^q et la relation de Bezout uk+vq = 1, on obtient A = A^1 = A^(uk+vq) = A^uk * A^vq = Id * M^v, avec A^k = Id car l'ordre de A est surement premier avec q mais pas avec k=ord(M)
 
 \\print(inverse);
 
-expomatricielle(a, n) = {
+expomatricielle(a, n) = { \\exponentielle matricielle, pas besoin d'exponentielle rapide
 	r = matid(12);
 	for(i=1, n, t = r*a; r = Mod(t, 27););
 	return(r);
